@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Viswanath Chilakala — Portfolio</title>
+  <meta name="description" content="A side-scrolling, Mario-inspired portfolio for Viswanath Chilakala." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar" aria-label="Top navigation">
+    <div class="topbar__left">
+      <span class="badge">VIS</span>
+      <span class="topbar__title">Level 1: Career Run</span>
+    </div>
+    <nav class="topbar__right">
+      <a href="#about">About</a>
+      <a href="#timeline">Milestones</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="about">
+      <div class="hero__copy">
+        <h1>Viswanath Chilakala</h1>
+        <p class="subtitle">Technical Product Manager · Data/Analytics · Seattle</p>
+        <p class="lede">
+          Scroll to move. As the level progresses, you’ll hit signposts with milestones from Microsoft → MBA → Nordstrom.
+        </p>
+        <div class="cta">
+          <a class="btn" href="#timeline">Start the run</a>
+          <a class="btn btn--ghost" target="_blank" rel="noreferrer" href="https://linkedin.com/in/viswanathch/">LinkedIn</a>
+        </div>
+        <p class="hint">Tip: Use mousewheel/trackpad, or swipe on mobile.</p>
+      </div>
+      <div class="hero__stats" aria-label="Highlights">
+        <div class="stat"><div class="stat__k">35M</div><div class="stat__v">MAU impacted</div></div>
+        <div class="stat"><div class="stat__k">$5M</div><div class="stat__v">annual cost reduced</div></div>
+        <div class="stat"><div class="stat__k">140TB</div><div class="stat__v">data/day pipelines</div></div>
+        <div class="stat"><div class="stat__k">MBA</div><div class="stat__v">UW Foster (STEM)</div></div>
+      </div>
+    </section>
+
+    <section class="level" id="timeline" aria-label="Side scrolling level">
+      <div class="level__sky"></div>
+      <div class="level__parallax level__parallax--far"></div>
+      <div class="level__parallax level__parallax--near"></div>
+
+      <div class="level__track" id="track">
+        <div class="mario" id="mario" aria-hidden="true">
+          <div class="mario__sprite" id="marioSprite"></div>
+          <div class="mario__shadow"></div>
+        </div>
+
+        <div class="ground"></div>
+
+        <div class="signpost" data-mile="0" style="left: 12%;">
+          <div class="signpost__pole"></div>
+          <button class="signpost__sign" type="button">2016 · Microsoft</button>
+        </div>
+        <div class="signpost" data-mile="1" style="left: 28%;">
+          <div class="signpost__pole"></div>
+          <button class="signpost__sign" type="button">2017–2020 · Data Analyst 2</button>
+        </div>
+        <div class="signpost" data-mile="2" style="left: 44%;">
+          <div class="signpost__pole"></div>
+          <button class="signpost__sign" type="button">2020–2023 · Tech Lead</button>
+        </div>
+        <div class="signpost" data-mile="3" style="left: 60%;">
+          <div class="signpost__pole"></div>
+          <button class="signpost__sign" type="button">2024 · CDL (Venture)</button>
+        </div>
+        <div class="signpost" data-mile="4" style="left: 76%;">
+          <div class="signpost__pole"></div>
+          <button class="signpost__sign" type="button">2025 · UW Foster MBA</button>
+        </div>
+        <div class="signpost" data-mile="5" style="left: 92%;">
+          <div class="signpost__pole"></div>
+          <button class="signpost__sign" type="button">2025–Now · Nordstrom TPM</button>
+        </div>
+      </div>
+
+      <div class="hud" aria-label="HUD">
+        <div class="hud__item">WORLD 1-1</div>
+        <div class="hud__bar"><div class="hud__barFill" id="progress"></div></div>
+        <div class="hud__item" id="mileLabel">READY</div>
+      </div>
+
+      <div class="card" id="card" aria-live="polite" aria-hidden="true">
+        <div class="card__header">
+          <div class="card__title" id="cardTitle">Milestone</div>
+          <button class="card__close" id="cardClose" type="button" aria-label="Close">×</button>
+        </div>
+        <div class="card__body" id="cardBody"></div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <h2>Contact</h2>
+      <div class="contact__grid">
+        <a class="contact__item" href="mailto:viswach@uw.edu">viswach@uw.edu</a>
+        <a class="contact__item" href="https://linkedin.com/in/viswanathch/" target="_blank" rel="noreferrer">linkedin.com/in/viswanathch</a>
+        <span class="contact__item">Seattle, WA</span>
+      </div>
+      <p class="fineprint">Mario-inspired homage. No Nintendo assets used.</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
