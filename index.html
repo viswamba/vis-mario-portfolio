@@ -26,14 +26,19 @@
     <div class="start__panel">
       <div class="start__title">VISWANATH</div>
       <div class="start__subtitle">Interactive Resume</div>
-      <div class="start__hint">Scroll / swipe to move · Click signs & blocks · ESC closes panels</div>
+      <div class="start__hint">Desktop: hold <span class="kbd">SPACE</span> to run · Mobile: hold the big button</div>
       <div class="start__row">
-        <button class="btn" id="btnStart" type="button">Press Start</button>
+        <button class="btn" id="btnStart" type="button">Start</button>
         <button class="btn btn--ghost" id="btnAudio" type="button" aria-pressed="false">Audio: OFF</button>
       </div>
-      <div class="start__fine">Mario-inspired homage. Custom art only. No Nintendo assets.</div>
+      <div class="start__fine">Game-style homage. Custom art only.</div>
     </div>
   </div>
+
+  <button class="runbtn" id="runBtn" type="button" aria-label="Hold to run">
+    <span class="runbtn__ring"></span>
+    <span class="runbtn__label">HOLD</span>
+  </button>
 
   <main>
     <section class="hero" id="about" hidden>

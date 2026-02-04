@@ -97,23 +97,35 @@ const cardClose = document.getElementById('cardClose');
 
 function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
 
-function getScrollProgress(){
-  const level = document.getElementById('timeline');
-  const rect = level.getBoundingClientRect();
+let running = false;
 
-  // Progress from when the section enters viewport to when it leaves.
-  const total = window.innerHeight + rect.height;
-  const passed = window.innerHeight - rect.top;
-  return clamp(passed / total, 0, 1);
+function getRunProgress(){
+  // Progress is driven by holding SPACE (desktop) or holding the on-screen button (mobile).
+  // Speed is constant for now; later we can add easing/accel.
+  return window.__runProgress || 0;
+}
+
+function setRunProgress(p){
+  window.__runProgress = clamp(p, 0, 1);
 }
 
 let lastP = 0;
 let lastMoveTs = 0;
 
+let lastTs = performance.now();
 function render(){
-  const p = getScrollProgress();
+  const now = performance.now();
+  const dt = Math.min(0.05, (now - lastTs) / 1000);
+  lastTs = now;
+
+  // advance progress while running
+  if(running){
+    setRunProgress(getRunProgress() + dt * 0.08); // ~12.5s for full run
+  }
+
+  const p = getRunProgress();
   const dx = (p - lastP);
-  const moving = Math.abs(dx) > 0.0005;
+  const moving = Math.abs(dx) > 0.00001;
 
   if(moving){
     lastMoveTs = performance.now();
@@ -141,8 +153,8 @@ function render(){
   // Parallax backgrounds
   const far = document.querySelector('.level__parallax--far');
   const near = document.querySelector('.level__parallax--near');
-  far.style.transform = `translateX(${-p*120}px)`;
-  near.style.transform = `translateX(${-p*220}px)`;
+  far.style.transform = `translateX(${-p*240}px)`;
+  near.style.transform = `translateX(${-p*420}px)`;
 
   // HUD progress
   progressEl.style.width = `${(p*100).toFixed(1)}%`;
@@ -205,5 +217,38 @@ cardClose.addEventListener('click', closeCard);
 window.addEventListener('keydown', (e) => {
   if(e.key === 'Escape') closeCard();
 });
+
+// Run controls
+const runBtn = document.getElementById('runBtn');
+function setRunning(on){
+  running = on;
+  if(on){
+    mario.classList.add('running');
+  } else {
+    mario.classList.remove('running');
+  }
+}
+
+window.addEventListener('keydown', (e) => {
+  if(e.code === 'Space'){
+    e.preventDefault();
+    setRunning(true);
+  }
+});
+window.addEventListener('keyup', (e) => {
+  if(e.code === 'Space'){
+    e.preventDefault();
+    setRunning(false);
+  }
+});
+
+// Mobile button (also works with mouse)
+runBtn?.addEventListener('pointerdown', (e) => { e.preventDefault(); setRunning(true); });
+runBtn?.addEventListener('pointerup', (e) => { e.preventDefault(); setRunning(false); });
+runBtn?.addEventListener('pointercancel', () => setRunning(false));
+runBtn?.addEventListener('pointerleave', () => setRunning(false));
+
+// On start, reset progress and focus the game section.
+ui.btnStart?.addEventListener('click', () => { setRunProgress(0); });
 
 render();
