@@ -14,17 +14,29 @@
   <header class="topbar" aria-label="Top navigation">
     <div class="topbar__left">
       <span class="badge">VIS</span>
-      <span class="topbar__title">Level 1: Career Run</span>
+      <span class="topbar__title">Press Start — Interactive Resume</span>
     </div>
     <nav class="topbar__right">
-      <a href="#about">About</a>
-      <a href="#timeline">Milestones</a>
+      <a href="#game">Game</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
+  <div class="start" id="start" role="dialog" aria-modal="true" aria-label="Start screen">
+    <div class="start__panel">
+      <div class="start__title">VISWANATH</div>
+      <div class="start__subtitle">Interactive Resume</div>
+      <div class="start__hint">Scroll / swipe to move · Click signs & blocks · ESC closes panels</div>
+      <div class="start__row">
+        <button class="btn" id="btnStart" type="button">Press Start</button>
+        <button class="btn btn--ghost" id="btnAudio" type="button" aria-pressed="false">Audio: OFF</button>
+      </div>
+      <div class="start__fine">Mario-inspired homage. Custom art only. No Nintendo assets.</div>
+    </div>
+  </div>
+
   <main>
-    <section class="hero" id="about">
+    <section class="hero" id="about" hidden>
       <div class="hero__copy">
         <h1>Viswanath Chilakala</h1>
         <p class="subtitle">Technical Product Manager · Data/Analytics · Seattle</p>
@@ -45,12 +57,13 @@
       </div>
     </section>
 
-    <section class="level" id="timeline" aria-label="Side scrolling level">
+    <section class="level" id="game" aria-label="Side scrolling level">
       <div class="level__sky"></div>
       <div class="level__parallax level__parallax--far"></div>
       <div class="level__parallax level__parallax--near"></div>
 
       <div class="level__track" id="track">
+        <div class="camera" id="camera">
         <div class="mario" id="mario" aria-hidden="true">
           <div class="mario__sprite" id="marioSprite"></div>
           <div class="mario__shadow"></div>
@@ -78,9 +91,14 @@
           <div class="signpost__pole"></div>
           <button class="signpost__sign" type="button">2025 · UW Foster MBA</button>
         </div>
-        <div class="signpost" data-mile="5" style="left: 92%;">
+        <div class="signpost" data-mile="5" style="left: 88%;">
           <div class="signpost__pole"></div>
-          <button class="signpost__sign" type="button">2025–Now · Nordstrom TPM</button>
+          <button class="signpost__sign" type="button">2025-06-22 · Nordstrom TPM</button>
+        </div>
+        <div class="signpost" data-mile="6" style="left: 96%;">
+          <div class="signpost__pole"></div>
+          <button class="signpost__sign" type="button">2025-06-23 · Amazon SVM</button>
+        </div>
         </div>
       </div>
 

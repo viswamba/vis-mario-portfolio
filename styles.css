@@ -23,6 +23,30 @@ body{
   overflow-x:hidden;
 }
 
+.start{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(900px 520px at 50% 40%, rgba(255,255,255,.10), rgba(0,0,0,.55) 55%, rgba(0,0,0,.72)),
+    linear-gradient(180deg, rgba(10,14,30,.92), rgba(10,14,30,.98));
+}
+.start__panel{
+  width:min(720px, calc(100% - 28px));
+  padding:22px 18px;
+  border:3px solid rgba(255,255,255,.18);
+  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+  box-shadow: 0 18px 0 rgba(0,0,0,.25);
+  text-align:center;
+}
+.start__title{font-size:22px;letter-spacing:1px;margin-bottom:10px}
+.start__subtitle{font-size:12px;opacity:.92;margin-bottom:10px}
+.start__hint{font-size:10px;opacity:.78;line-height:1.6;margin-bottom:16px}
+.start__row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
+.start__fine{font-size:9px;opacity:.7;line-height:1.5}
+
 a{color:inherit}
 
 .topbar{
@@ -128,6 +152,16 @@ a{color:inherit}
   top:0;
   height:100%;
   width:100%;
+  overflow:hidden;
+}
+
+.camera{
+  position:absolute;
+  left:0;
+  top:0;
+  height:100%;
+  width:100%;
+  will-change: transform;
 }
 .ground{
   position:absolute;
@@ -142,11 +176,10 @@ a{color:inherit}
 
 .mario{
   position:absolute;
-  left:8%;
+  left:220px;
   bottom:120px;
   width:64px;
   height:64px;
-  transform: translateX(0);
 }
 .mario__shadow{
   position:absolute;

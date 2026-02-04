@@ -1,3 +1,31 @@
+const ui = {
+  start: document.getElementById('start'),
+  btnStart: document.getElementById('btnStart'),
+  btnAudio: document.getElementById('btnAudio'),
+  hero: document.getElementById('about'),
+};
+
+let audioOn = false;
+
+function setAudio(on){
+  audioOn = on;
+  if(ui.btnAudio){
+    ui.btnAudio.textContent = `Audio: ${on ? 'ON' : 'OFF'}`;
+    ui.btnAudio.setAttribute('aria-pressed', String(on));
+  }
+}
+
+function startExperience(){
+  if(ui.start) ui.start.style.display = 'none';
+  if(ui.hero) ui.hero.hidden = false;
+  // scroll to game
+  document.getElementById('game')?.scrollIntoView({behavior:'smooth'});
+}
+
+ui.btnStart?.addEventListener('click', startExperience);
+ui.btnAudio?.addEventListener('click', () => setAudio(!audioOn));
+setAudio(false);
+
 const milestones = [
   {
     title: "Microsoft (2016–2017) — Data Analyst, Transaction Experiences",
@@ -41,16 +69,24 @@ const milestones = [
     ]
   },
   {
-    title: "Nordstrom (2025–Present) — Technical Product Manager",
+    title: "Nordstrom (2025-06-22) — Technical Product Manager",
     bullets: [
       "Product Insights & Performance Optimization under Merchandising.",
-      "Leading analytics portal for internal buy pods + external suppliers.",
-      "Partnering on ML-based recommendations to improve buyer outcomes ~15%."
+      "Led analytics portal for internal buy pods + external suppliers.",
+      "Partnered on ML-based recommendations to improve buyer outcomes ~15%."
+    ]
+  },
+  {
+    title: "Amazon (2025-06-23–Present) — Senior Vendor Manager",
+    bullets: [
+      "Own a retail category doing ~$500M in annual sales.",
+      "Drive vendor strategy, selection, and growth across the category."
     ]
   }
 ];
 
 const track = document.getElementById('track');
+const camera = document.getElementById('camera');
 const mario = document.getElementById('mario');
 const progressEl = document.getElementById('progress');
 const mileLabel = document.getElementById('mileLabel');
@@ -89,9 +125,18 @@ function render(){
     }
   }
 
-  // Mario X position within the track
-  const x = (p * 84); // keep him away from absolute edges
-  mario.style.transform = `translateX(${x}vw)`;
+  // Camera system: keep Mario near a comfortable screen position while world scrolls.
+  // We render the world in a wide virtual space (WORLD_W px) and translate the camera.
+  const WORLD_W = 5200;
+  const VIEW_W = track.clientWidth;
+  const marioX = 220 + p * (WORLD_W - 440); // keep off edges
+  const cameraX = clamp(marioX - VIEW_W * 0.35, 0, WORLD_W - VIEW_W);
+
+  if(camera){
+    camera.style.transform = `translateX(${-cameraX}px)`;
+  }
+  // Mario is positioned in world coordinates inside the camera.
+  mario.style.left = `${marioX}px`;
 
   // Parallax backgrounds
   const far = document.querySelector('.level__parallax--far');
