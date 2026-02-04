@@ -41,11 +41,18 @@ const milestones = [
     ]
   },
   {
-    title: "Nordstrom (2025–Present) — Technical Product Manager",
+    title: "Nordstrom (2025-06-22) — Technical Product Manager",
     bullets: [
       "Product Insights & Performance Optimization under Merchandising.",
-      "Leading analytics portal for internal buy pods + external suppliers.",
-      "Partnering on ML-based recommendations to improve buyer outcomes ~15%."
+      "Led analytics portal for internal buy pods + external suppliers.",
+      "Partnered on ML-based recommendations to improve buyer outcomes ~15%."
+    ]
+  },
+  {
+    title: "Amazon (2025-06-23–Present) — Senior Vendor Manager",
+    bullets: [
+      "Own a retail category doing ~$500M in annual sales.",
+      "Drive vendor strategy, selection, and growth across the category."
     ]
   }
 ];
